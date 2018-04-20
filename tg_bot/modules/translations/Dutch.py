@@ -8,7 +8,7 @@ DutchStrings = {
                 "Well damn, I can't ban that user." : "Het lijkt erop dat ik die gebruiker niet kan bannen." ,
                 "You haven't specified a time to ban this user for!" : "Je hebt geen tijd gespecificeerd voor het bannen van deze gebruiker!" ,
                 "Invalid time amount specified." : "Ongeldige tijdspecificatie opgegeven." ,
-                "Invalid time type specified. Expected m,h, or d, got: {}" : "Ongeldige tijdspecificatie opgegeven. Verwachte m, h of d, kree",
+                "Invalid time type specified. Expected m,h, or d, got: {}" : "Ongeldige tijdspecificatie opgegeven. Verwachte m, h of d, kreeg: {}",
                 "Banned! User will be banned for {}." : "Banned! Gebruiker zal verbannen worden voor {}." ,
                 "Banned!User will be banned for {}." : "Banned! Gebruiker zal verbannen worden voor {}." ,
                 "I really wish I could kick admins..." : "Kon ik maar admins kicken..." ,
@@ -28,6 +28,21 @@ DutchStrings = {
                 "I can't restrict people there! Make sure I'm admin and can ban users." : "Ik kan de rechten van een gebruiker hier niet beperken! Wees er zeker van dat ik de juiste admin rechten heb om gebruikers te kunnen bannen." ,
                 "This user is not a participant of the chat!" : "Deze gebruiker is geen lid van de groep!" ,
                 "This group chat was deactivated!" : "Dit groepsgesprek was gedeactiveerd!" ,
-                "Could not ban user. Perhaps the group has been suspended by Telegram." : "Kon deze gebruiker niet bannen. Misschien is de groep opgeheven door Telegram."
+                "Could not ban user. Perhaps the group has been suspended by Telegram." : "Kon deze gebruiker niet bannen. Misschien is de groep opgeheven door Telegram." ,
+                "You'll need to either give me a username to mute, or reply to someone to be muted." : "Je moet me een gebruikersnaam geven of zijn bericht reageren om die gebruiker te muten." ,
+                "I'm not muting myself!" : "Ik ga niet mijzelf muten!" ,
+                "Afraid I can't stop an admin from talking!" : "Ik ben bang dat een admin niet kan gemute kan worden!" ,
+                "This user is already muted!" : "Deze gebruiker is al gemuted!" ,
+                "This user isn't in the chat!" : "Deze gebruiker is niet in de groep!" ,
+                "You don't seem to be referring to a user." : "Het lijkt erop dat je niet naar een gebruiker verwijst." ,
+                "I can't seem to find this user" : "Het lijkt erop dat ik deze gebruiker niet kan vinden" ,
+                "I'm not gonna MUTE myself, are you crazy?" : "Ik ga toch niet mijzelf muten, ben je gek?" ,
+                "You haven't specified a time to mute this user for!" : "Je hebt geen tijd gespecificeerd voor het muten van deze gebruiker!" ,
+                "Muted! User will be Muted for {}." : "Gemuted! Gebruiker zal gemute worden voor {}." ,
+                "Muted!User will be Muted for {}." : "Muted! Gebruiker zal gemute worden voor {}." ,
+                "Well damn, I can't mute that user." : "Het lijkt erop dat ik die gebruiker niet kan muten." ,
+                "You'll need to either give me a username to unmute, or reply to someone to be unmuted." : "Je moet me een gebruikersnaam geven of zijn bericht reageren om die gebruiker te unmuten." ,
+                "This user already has the right to speak." : "Deze gebruiker mag weer praten." ,
+                "This user isn't even in the chat, unmuting them won't make them talk more than they already do!" : "Deze gebruiker is niet eens in de groep, unmuten zal hem niet meer laten praten dan hij al doet!"
                }
 

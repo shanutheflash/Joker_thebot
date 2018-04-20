@@ -154,13 +154,13 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         update.effective_chat.kick_member(user_id, until_date=bantime)
         bot.send_sticker(update.effective_chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text(tld(chat.id, "Banned! User will be banned for {}.".format(time_val)))
+        message.reply_text(tld(chat.id, "Banned! User will be banned for {}.").format(time_val))
         return log
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text(tld(chat.id, "Banned!User will be banned for {}.".format(time_val), quote=False))
+            message.reply_text(tld(chat.id, "Banned!User will be banned for {}.").format(time_val), quote=False)
             return log
         else:
             LOGGER.warning(update)
@@ -295,55 +295,55 @@ def rban(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
 
     if not args:
-        message.reply_text("You don't seem to be referring to a chat/user.")
+        message.reply_text(tld(chat.id, "You don't seem to be referring to a chat/user."))
         return
 
     user_id, chat_id = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text(tld(chat.id, "You don't seem to be referring to a user."))
         return
     elif not chat_id:
-        message.reply_text("You don't seem to be referring to a chat.")
+        message.reply_text(tld(chat.id, "You don't seem to be referring to a chat."))
         return
 
     try:
         chat = bot.get_chat(chat_id)
     except BadRequest as excp:
         if excp.message == "Chat not found":
-            message.reply_text("Chat not found! Make sure you entered a valid chat ID and I'm part of that chat.")
+            message.reply_text(tld(chat.id, "Chat not found! Make sure you entered a valid chat ID and I'm part of that chat."))
             return
         else:
             raise
 
     if chat.type == 'private':
-        message.reply_text("I'm sorry, but that's a private chat!")
+        message.reply_text(tld(chat.id, "I'm sorry, but that's a private chat!"))
         return
 
     if not is_bot_admin(chat, bot.id) and not chat.get_member(bot.id).can_restrict_members:
-        message.reply_text("I can't restrict people there! Make sure I'm admin and can ban users.")
+        message.reply_text(tld(chat.id, "I can't restrict people there! Make sure I'm admin and can ban users."))
         return
 
     try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text(tld(chat.id, "I can't seem to find this user"))
             return
         else:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("I really wish I could ban admins...")
+        message.reply_text(tld(chat.id, "I really wish I could ban admins..."))
         return
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy?")
+        message.reply_text(tld(chat.id, "I'm not gonna BAN myself, are you crazy?"))
         return
 
     try:
         chat.kick_member(user_id)
-        message.reply_text("Banned!")
+        message.reply_text(tld(chat.id, "Banned!"))
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
