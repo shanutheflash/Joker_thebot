@@ -6,6 +6,7 @@ from telegram.ext import CommandHandler, RegexHandler, Filters
 
 from tg_bot import dispatcher
 from tg_bot.modules.helper_funcs.misc import is_module_loaded
+from tg_bot.modules.translations.strings import tld
 
 FILENAME = __name__.rsplit(".", 1)[-1]
 
@@ -60,13 +61,13 @@ if is_module_loaded(FILENAME):
 
             if disable_cmd in set(DISABLE_CMDS + DISABLE_OTHER):
                 sql.disable_command(chat.id, disable_cmd)
-                update.effective_message.reply_text("Disabled the use of `{}`".format(disable_cmd),
+                update.effective_message.reply_text(tld(chat.id, "Disabled the use of `{}`").format(disable_cmd),
                                                     parse_mode=ParseMode.MARKDOWN)
             else:
-                update.effective_message.reply_text("That command can't be disabled")
+                update.effective_message.reply_text(tld(chat.id, "That command can't be disabled"))
 
         else:
-            update.effective_message.reply_text("What should I disable?")
+            update.effective_message.reply_text(tld(chat.id, "What should I disable?"))
 
 
     @run_async
@@ -79,10 +80,10 @@ if is_module_loaded(FILENAME):
                 enable_cmd = enable_cmd[1:]
 
             if sql.enable_command(chat.id, enable_cmd):
-                update.effective_message.reply_text("Enabled the use of `{}`".format(enable_cmd),
+                update.effective_message.reply_text(tld(chat.id, "Enabled the use of `{}`").format(enable_cmd),
                                                     parse_mode=ParseMode.MARKDOWN)
             else:
-                update.effective_message.reply_text("Is that even disabled?")
+                update.effective_message.reply_text(tld(chat.id, "Is that even disabled?"))
 
         else:
             update.effective_message.reply_text("What should I enable?")
@@ -95,10 +96,10 @@ if is_module_loaded(FILENAME):
             result = ""
             for cmd in set(DISABLE_CMDS + DISABLE_OTHER):
                 result += " - `{}`\n".format(cmd)
-            update.effective_message.reply_text("The following commands are toggleable:\n{}".format(result),
+            update.effective_message.reply_text(tld(update.effective_chat.id, "The following commands are toggleable:\n{}").format(result),
                                                 parse_mode=ParseMode.MARKDOWN)
         else:
-            update.effective_message.reply_text("No commands can be disabled.")
+            update.effective_message.reply_text(tld(update.effective_chat.id, "No commands can be disabled."))
 
 
     # do not async
@@ -108,10 +109,10 @@ if is_module_loaded(FILENAME):
             result = ""
             for cmd in disabled:
                 result += " - `{}`\n".format(cmd.command)
-            return "The following commands are currently restricted:\n{}".format(result)
+            return tld(chat_id, "The following commands are currently restricted:\n{}").format(result)
 
         else:
-            return "No commands are disabled!"
+            return tld(chat_id, "No commands are disabled!")
 
 
     @run_async

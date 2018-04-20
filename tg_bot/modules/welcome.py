@@ -14,6 +14,7 @@ from tg_bot.modules.helper_funcs.misc import build_keyboard, revert_buttons
 from tg_bot.modules.helper_funcs.string_handling import button_markdown_parser, markdown_parser, \
     escape_invalid_curly_brackets
 from tg_bot.modules.log_channel import loggable
+from tg_bot.modules.translations.strings import tld
 
 VALID_WELCOME_FORMATTERS = ['first', 'last', 'fullname', 'username', 'id', 'count', 'chatname', 'mention']
 
@@ -86,7 +87,7 @@ def new_member(bot: Bot, update: Update):
         for new_mem in new_members:
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
-                update.effective_message.reply_text("Master is in the houseeee, let's get this party started!")
+                update.effective_message.reply_text(tld(chat.id, "Master is in the houseeee, let's get this party started!"))
                 continue
 
             # Don't welcome yourself
@@ -153,7 +154,7 @@ def left_member(bot: Bot, update: Update):
 
             # Give the owner a special goodbye
             if left_mem.id == OWNER_ID:
-                update.effective_message.reply_text("RIP Master")
+                update.effective_message.reply_text(tld(chat.id, "RIP Master"))
                 return
 
             # if media goodbye, use appropriate function for it
@@ -200,8 +201,8 @@ def welcome(bot: Bot, update: Update, args: List[str]):
         noformat = args and args[0] == "noformat"
         pref, welcome_m, welcome_type = sql.get_welc_pref(chat.id)
         update.effective_message.reply_text(
-            "This chat has it's welcome setting set to: `{}`.\n*The welcome message "
-            "(not filling the {{}}) is:*".format(pref),
+            tld(chat.id, "This chat has it's welcome setting set to: `{}`.\n*The welcome message "
+            "(not filling the {{}}) is:*").format(pref),
             parse_mode=ParseMode.MARKDOWN)
 
         if welcome_type == sql.Types.BUTTON_TEXT:
@@ -226,11 +227,11 @@ def welcome(bot: Bot, update: Update, args: List[str]):
     elif len(args) >= 1:
         if args[0].lower() in ("on", "yes"):
             sql.set_welc_preference(str(chat.id), True)
-            update.effective_message.reply_text("I'll be polite!")
+            update.effective_message.reply_text(tld(chat.id, "I'll be polite!"))
 
         elif args[0].lower() in ("off", "no"):
             sql.set_welc_preference(str(chat.id), False)
-            update.effective_message.reply_text("I'm sulking, not saying hello anymore.")
+            update.effective_message.reply_text(tld(chat.id, "I'm sulking, not saying hello anymore."))
 
         else:
             # idek what you're writing, say yes or no
@@ -246,8 +247,8 @@ def goodbye(bot: Bot, update: Update, args: List[str]):
         noformat = args and args[0] == "noformat"
         pref, goodbye_m, goodbye_type = sql.get_gdbye_pref(chat.id)
         update.effective_message.reply_text(
-            "This chat has it's goodbye setting set to: `{}`.\n*The goodbye  message "
-            "(not filling the {{}}) is:*".format(pref),
+            tld(chat.id, "This chat has it's goodbye setting set to: `{}`.\n*The goodbye  message "
+            "(not filling the {{}}) is:*").format(pref),
             parse_mode=ParseMode.MARKDOWN)
 
         if goodbye_type == sql.Types.BUTTON_TEXT:
@@ -272,11 +273,11 @@ def goodbye(bot: Bot, update: Update, args: List[str]):
     elif len(args) >= 1:
         if args[0].lower() in ("on", "yes"):
             sql.set_gdbye_preference(str(chat.id), True)
-            update.effective_message.reply_text("I'll be sorry when people leave!")
+            update.effective_message.reply_text(tld(chat.id, "I'll be sorry when people leave!"))
 
         elif args[0].lower() in ("off", "no"):
             sql.set_gdbye_preference(str(chat.id), False)
-            update.effective_message.reply_text("They leave, they're dead to me.")
+            update.effective_message.reply_text(tld(chat.id, "They leave, they're dead to me."))
 
         else:
             # idek what you're writing, say yes or no
@@ -328,11 +329,11 @@ def set_welcome(bot: Bot, update: Update) -> str:
         data_type = sql.Types.VIDEO
 
     else:
-        msg.reply_text("You didn't specify what to reply with!")
+        msg.reply_text(tld(chat.id, "You didn't specify what to reply with!"))
         return ""
 
     sql.set_custom_welcome(chat.id, content, data_type, buttons)
-    update.effective_message.reply_text("Successfully set custom welcome message!")
+    update.effective_message.reply_text(tld(chat.id, "Successfully set custom welcome message!"))
 
     return "<b>{}:</b>" \
            "\n#SET_WELCOME" \
@@ -348,7 +349,7 @@ def reset_welcome(bot: Bot, update: Update) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     sql.set_custom_welcome(chat.id, sql.DEFAULT_WELCOME, sql.Types.TEXT)
-    update.effective_message.reply_text("Successfully reset welcome message to default!")
+    update.effective_message.reply_text(tld(chat.id, "Successfully reset welcome message to default!"))
     return "<b>{}:</b>" \
            "\n#RESET_WELCOME" \
            "\n<b>Admin:</b> {}" \
@@ -401,11 +402,11 @@ def set_goodbye(bot: Bot, update: Update) -> str:
         data_type = sql.Types.VIDEO
 
     else:
-        msg.reply_text("You didn't specify what to reply with!")
+        msg.reply_text(tld(chat.id, "You didn't specify what to reply with!"))
         return ""
 
     sql.set_custom_gdbye(chat.id, content, data_type, buttons)
-    update.effective_message.reply_text("Successfully set custom goodbye message!")
+    update.effective_message.reply_text(tld(chat.id, "Successfully set custom goodbye message!"))
     return "<b>{}:</b>" \
            "\n#SET_GOODBYE" \
            "\n<b>Admin:</b> {}" \
@@ -420,7 +421,7 @@ def reset_goodbye(bot: Bot, update: Update) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     sql.set_custom_gdbye(chat.id, sql.DEFAULT_GOODBYE, sql.Types.TEXT)
-    update.effective_message.reply_text("Successfully reset goodbye message to default!")
+    update.effective_message.reply_text(tld(chat.id, "Successfully reset goodbye message to default!"))
     return "<b>{}:</b>" \
            "\n#RESET_GOODBYE" \
            "\n<b>Admin:</b> {}" \
@@ -438,14 +439,14 @@ def clean_welcome(bot: Bot, update: Update, args: List[str]) -> str:
     if not args:
         clean_pref = sql.get_clean_pref(chat.id)
         if clean_pref:
-            update.effective_message.reply_text("I should be deleting welcome messages up to two days old.")
+            update.effective_message.reply_text(tld(chat.id, "I should be deleting welcome messages up to two days old."))
         else:
-            update.effective_message.reply_text("I'm currently not deleting old welcome messages!")
+            update.effective_message.reply_text(tld(chat.id, "I'm currently not deleting old welcome messages!"))
         return ""
 
     if args[0].lower() in ("on", "yes"):
         sql.set_clean_welcome(str(chat.id), True)
-        update.effective_message.reply_text("I'll try to delete old welcome messages!")
+        update.effective_message.reply_text(tld(chat.id, "I'll try to delete old welcome messages!"))
         return "<b>{}:</b>" \
                "\n#CLEAN_WELCOME" \
                "\n<b>Admin:</b> {}" \
@@ -453,7 +454,7 @@ def clean_welcome(bot: Bot, update: Update, args: List[str]) -> str:
                                                                          mention_html(user.id, user.first_name))
     elif args[0].lower() in ("off", "no"):
         sql.set_clean_welcome(str(chat.id), False)
-        update.effective_message.reply_text("I won't delete old welcome messages.")
+        update.effective_message.reply_text(tld(chat.id, "I won't delete old welcome messages."))
         return "<b>{}:</b>" \
                "\n#CLEAN_WELCOME" \
                "\n<b>Admin:</b> {}" \

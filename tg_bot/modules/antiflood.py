@@ -10,6 +10,7 @@ from tg_bot import dispatcher
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin, user_admin, can_restrict
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import antiflood_sql as sql
+from tg_bot.modules.translations.strings import tld
 
 FLOOD_GROUP = 3
 
@@ -82,7 +83,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
 
             else:
                 sql.set_flood(chat.id, amount)
-                message.reply_text(tld(chat.id, "Antiflood has been updated and set to {}".format(amount)))
+                message.reply_text(tld(chat.id, "Antiflood has been updated and set to {}").format(amount))
                 return "<b>{}:</b>" \
                        "\n#SETFLOOD" \
                        "\n<b>Admin:</b> {}" \
@@ -104,7 +105,7 @@ def flood(bot: Bot, update: Update):
         update.effective_message.reply_text(tld(chat.id, "I'm not currently enforcing flood control!"))
     else:
         update.effective_message.reply_text(
-            "I'm currently banning users if they send more than {} consecutive messages.".format(flood_settings.limit))
+            tld(chat.id, "I'm currently banning users if they send more than {} consecutive messages.").format(flood_settings.limit))
 
 
 def __migrate__(old_chat_id, new_chat_id):
@@ -114,9 +115,9 @@ def __migrate__(old_chat_id, new_chat_id):
 def __chat_settings__(chat_id, user_id):
     flood_settings = sql.get_flood(chat_id)
     if not flood_settings or flood_settings.limit == 0:
-        return "*Not* currently enforcing flood control."
+        return tld(chat_id, "*Not* currently enforcing flood control.")
     else:
-        return "Antiflood is set to `{}` messages.".format(flood_settings.limit)
+        return tld(chat_id, "Antiflood is set to `{}` messages.").format(flood_settings.limit)
 
 
 __help__ = """

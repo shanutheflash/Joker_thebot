@@ -13,6 +13,7 @@ from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.chat_status import bot_admin, can_promote, user_admin, can_pin
 from tg_bot.modules.helper_funcs.extraction import extract_user
 from tg_bot.modules.log_channel import loggable
+from tg_bot.modules.translations.strings import tld
 
 
 @run_async
@@ -190,7 +191,7 @@ def invite(bot: Bot, update: Update):
 @run_async
 def adminlist(bot: Bot, update: Update):
     administrators = update.effective_chat.get_administrators()
-    text = "Admins in *{}*:".format(update.effective_chat.title or "this chat")
+    text = tld(update.effective_chat.id, "Admins in *{}*:").format(update.effective_chat.title or tld(update.effective_chat.id, "this chat"))
     for admin in administrators:
         user = admin.user
         name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
@@ -202,7 +203,7 @@ def adminlist(bot: Bot, update: Update):
 
 
 def __chat_settings__(chat_id, user_id):
-    return "You are *admin*: `{}`".format(
+    return tld(chat_id, "You are *admin*: `{}`").format(
         dispatcher.bot.get_chat_member(chat_id, user_id).status in (tld(chat_id, "administrator", "creator")))
 
 

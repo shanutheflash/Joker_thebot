@@ -10,6 +10,7 @@ from tg_bot import dispatcher, LOGGER
 from tg_bot.modules.helper_funcs.chat_status import user_not_admin, user_admin
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import reporting_sql as sql
+from tg_bot.modules.translations.strings import tld
 
 REPORT_GROUP = 5
 
@@ -24,27 +25,27 @@ def report_setting(bot: Bot, update: Update, args: List[str]):
         if len(args) >= 1:
             if args[0] in ("yes", "on"):
                 sql.set_user_setting(chat.id, True)
-                msg.reply_text("Turned on reporting! You'll be notified whenever anyone reports something.")
+                msg.reply_text(tld(chat.id, "Turned on reporting! You'll be notified whenever anyone reports something."))
 
             elif args[0] in ("no", "off"):
                 sql.set_user_setting(chat.id, False)
-                msg.reply_text("Turned off reporting! You wont get any reports.")
+                msg.reply_text(tld(chat.id, "Turned off reporting! You wont get any reports."))
         else:
-            msg.reply_text("Your current report preference is: `{}`".format(sql.user_should_report(chat.id)),
+            msg.reply_text(tld(chat.id, "Your current report preference is: `{}`").format(sql.user_should_report(chat.id)),
                            parse_mode=ParseMode.MARKDOWN)
 
     else:
         if len(args) >= 1:
             if args[0] in ("yes", "on"):
                 sql.set_chat_setting(chat.id, True)
-                msg.reply_text("Turned on reporting! Admins who have turned on reports will be notified when /report "
-                               "or @admin are called.")
+                msg.reply_text(tld(chat.id, "Turned on reporting! Admins who have turned on reports will be notified when /report "
+                               "or @admin are called."))
 
             elif args[0] in ("no", "off"):
                 sql.set_chat_setting(chat.id, False)
-                msg.reply_text("Turned off reporting! No admins will be notified on /report or @admin.")
+                msg.reply_text(tld(chat.id, "Turned off reporting! No admins will be notified on /report or @admin."))
         else:
-            msg.reply_text("This chat's current setting is: `{}`".format(sql.chat_should_report(chat.id)),
+            msg.reply_text(tld(chat.id, "This chat's current setting is: `{}`").format(sql.chat_should_report(chat.id)),
                            parse_mode=ParseMode.MARKDOWN)
 
 
@@ -78,7 +79,7 @@ def report(bot: Bot, update: Update) -> str:
             should_forward = False
 
         else:
-            msg = "{} is calling for admins in \"{}\"!".format(mention_html(user.id, user.first_name),
+            msg = tld(chat.id, "{} is calling for admins in \"{}\"!").format(mention_html(user.id, user.first_name),
                                                                html.escape(chat_name))
             link = ""
             should_forward = True
@@ -111,7 +112,7 @@ def __migrate__(old_chat_id, new_chat_id):
 
 
 def __chat_settings__(chat_id, user_id):
-    return "This chat is setup to send user reports to admins, via /report and @admin: `{}`".format(
+    return tld(chat_id, "This chat is setup to send user reports to admins, via /report and @admin: `{}`").format(
         sql.chat_should_report(chat_id))
 
 
