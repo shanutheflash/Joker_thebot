@@ -5,7 +5,7 @@ from telegram import Message, Chat, Update, Bot, User
 from telegram.ext import CommandHandler, Filters
 from telegram.ext.dispatcher import run_async
 from telegram.utils.helpers import mention_html
-
+from tg_bot.modules.translations.strings import tld
 from tg_bot import dispatcher
 from tg_bot.modules.helper_funcs.chat_status import bot_admin, user_admin, is_user_admin, is_user_ban_protected, can_restrict
 from tg_bot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
@@ -38,7 +38,7 @@ def mute(bot: Bot, update: Update, args: List[str]) -> str:
 
         elif member.can_send_messages is None or member.can_send_messages:
             bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
-            message.reply_text("Muted!")
+            message.reply_text(tld(chat.id, "Muted!"))
             return "<b>{}:</b>" \
                    "\n#MUTE" \
                    "\n<b>Admin:</b> {}" \

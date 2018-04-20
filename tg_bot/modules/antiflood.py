@@ -5,7 +5,7 @@ from telegram import Message, Chat, Update, Bot, User
 from telegram.error import BadRequest
 from telegram.ext import Filters, MessageHandler, CommandHandler, run_async
 from telegram.utils.helpers import mention_html
-
+from tg_bot.modules.translations.strings import tld
 from tg_bot import dispatcher
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin, user_admin, can_restrict
 from tg_bot.modules.log_channel import loggable
@@ -33,9 +33,8 @@ def check_flood(bot: Bot, update: Update) -> str:
     if should_ban:
         try:
             chat.kick_member(user.id)
-            msg.reply_text("I like to leave the flooding to natural disasters. But you, you were just a "
-                           "disappointment. Get out.")
-
+            msg.reply_text(tld(chat.id, "I like to leave the flooding to natural disasters. But you, you were just a"
+                            "disappointment. Get out."))
             return "<b>{}:</b>" \
                    "\n#BANNED" \
                    "\n<b>User:</b> {}" \
@@ -43,7 +42,7 @@ def check_flood(bot: Bot, update: Update) -> str:
                                                  mention_html(user.id, user.first_name))
 
         except BadRequest:
-            msg.reply_text("I can't kick people here, give me permissions first! Until then, I'll disable antiflood.")
+            msg.reply_text(tld(chat.id, "I can't kick people here, give me permissions first! Until then, I'll disable antiflood."))
             sql.set_flood(chat.id, 0)
             return "<b>{}:</b>" \
                    "\n#INFO" \
@@ -65,25 +64,25 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
         val = args[0].lower()
         if val == "off" or val == "no" or val == "0":
             sql.set_flood(chat.id, 0)
-            message.reply_text("Antiflood has been disabled.")
+            message.reply_text(tld(chat.id, "Antiflood has been disabled."))
 
         elif val.isdigit():
             amount = int(val)
             if amount <= 0:
                 sql.set_flood(chat.id, 0)
-                message.reply_text("Antiflood has been disabled.")
+                message.reply_text(tld(chat.id, "Antiflood has been disabled."))
                 return "<b>{}:</b>" \
                        "\n#SETFLOOD" \
                        "\n<b>Admin:</b> {}" \
                        "\nDisabled antiflood.".format(html.escape(chat.title), mention_html(user.id, user.first_name))
 
             elif amount < 3:
-                message.reply_text("Antiflood has to be either 0 (disabled), or a number bigger than 3!")
+                message.reply_text(tld(chat.id, "Antiflood has to be either 0 (disabled), or a number bigger than 3!"))
                 return ""
 
             else:
                 sql.set_flood(chat.id, amount)
-                message.reply_text("Antiflood has been updated and set to {}".format(amount))
+                message.reply_text(tld(chat.id, "Antiflood has been updated and set to {}".format(amount)))
                 return "<b>{}:</b>" \
                        "\n#SETFLOOD" \
                        "\n<b>Admin:</b> {}" \
@@ -91,7 +90,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
                                                                     mention_html(user.id, user.first_name), amount)
 
         else:
-            message.reply_text("Unrecognised argument - please use a number, 'off', or 'no'.")
+            message.reply_text(tld(chat.id, "Unrecognised argument - please use a number, 'off', or 'no'."))
 
     return ""
 
@@ -102,7 +101,7 @@ def flood(bot: Bot, update: Update):
 
     flood_settings = sql.get_flood(chat.id)
     if not flood_settings or flood_settings.limit == 0:
-        update.effective_message.reply_text("I'm not currently enforcing flood control!")
+        update.effective_message.reply_text(tld(chat.id, "I'm not currently enforcing flood control!"))
     else:
         update.effective_message.reply_text(
             "I'm currently banning users if they send more than {} consecutive messages.".format(flood_settings.limit))
