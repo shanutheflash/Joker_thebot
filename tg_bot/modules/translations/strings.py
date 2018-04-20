@@ -1,9 +1,6 @@
 from tg_bot.modules.sql.translation import prev_locale
-
-GermanStrings = {'Muted!' : 'Stummgeschalte!' ,
-                 'Switched to {} Successfully!' : 'Erfolgreich auf {} geschaltet!'}
-
-DutchStrings = { 'Switched to {} Successfully!' : 'Succesvol naar {} gewisseld!'}
+from tg_bot.modules.translations.German import GermanStrings
+from tg_bot.modules.translations.Dutch import DutchStrings
 
 def tld(chat_id, t):
     LANGUAGE = prev_locale(chat_id)
