@@ -139,7 +139,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
             return ""
 
     else:
-        message.reply_text(tld(chat.id, "Invalid time type specified. Expected m,h, or d, got: {}".format(time_val[-1])))
+        message.reply_text(tld(chat.id, "Invalid time type specified. Expected m,h, or d, got: {}").format(time_val[-1]))
         return ""
 
     log = "<b>{}:</b>" \
