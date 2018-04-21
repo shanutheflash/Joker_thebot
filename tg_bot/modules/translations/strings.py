@@ -6,7 +6,7 @@ def tld(chat_id, t):
     LANGUAGE = prev_locale(chat_id)
     if LANGUAGE in ('dutch', 'nederland') and t in DutchStrings:
         return DutchStrings[t]
-    elif LANGUAGE == 'German' and t in GermanStrings:
+    elif LANGUAGE == 'german' and t in GermanStrings:
         return GermanStrings[t]
     else:
         return t
