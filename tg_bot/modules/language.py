@@ -7,7 +7,7 @@ def change_locale(bot, update, args):
     chat = update.effective_chat
     if len(args) > 0:
         locale = args[0].lower()
-        if locale in  ('english', 'german', 'french', 'dutch', 'nederland'):
+        if locale in  ('english', 'german', 'deutsch',  'french', 'dutch', 'nederland'):
             switch_to_locale(chat.id, locale)
             update.message.reply_text(tld(chat.id, 'Switched to {} Successfully!').format(locale))
         else:
