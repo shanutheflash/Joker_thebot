@@ -9,7 +9,7 @@ def tld(chat_id, t):
         return DutchStrings[t]
     elif LANGUAGE in ('deutsch', 'german') and t in GermanStrings:
         return GermanStrings[t]
-    elif LANGUAGE in ('indonesian') and t in IndonesianStrings:
+    elif LANGUAGE in ('indonesian', 'bahasa') and t in IndonesianStrings:
         return IndonesianStrings[t]
     else:
         return t
