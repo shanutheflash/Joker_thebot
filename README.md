@@ -14,6 +14,17 @@ I'll also help when a database schema changes, and some table column needs to be
 Join the [news channel](https://t.me/MarieNews) if you just want to stay in the loop about new features or
 announcements.
 
+
+## Translations
+Help us bring this bot to your language!
+You can find the translateable strings on [crowdin](https://crowdin.com/project/ffbot).
+
+### Credits for translation
+* German - deletescape and P8tgames
+* Dutch - Shabier
+* Bahasa - KrasCGQ and Raphiel Rollerscaperers 
+
+
 ## Starting the bot.
 
 Once you've setup your database and your configuration (see below) is complete, simply run:
