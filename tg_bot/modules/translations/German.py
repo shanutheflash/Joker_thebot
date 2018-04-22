@@ -74,4 +74,15 @@ GermanStrings = {"Switched to {} successfully!" : "Erfolgreich auf {} geschaltet
                  "{} is now AFK!" : "{} ist jetzt AFK!" ,
                  "{} is no longer AFK!" : "{} ist nicht mehr AFK!" ,
                  "{} is AFK!" : "{} ist AFK!" ,
-                 "{} is AFK! says its because of:\n{}" : "{} ist AFK! sagt es ist wegen:\n{}"}
+                 "{} is AFK! says its because of:\n{}" : "{} ist AFK! sagt es ist wegen:\n{}" ,
+                 "How am I meant to promote someone that's already an admin?" : "Wie soll ich jemanden befördern der schon Admin ist?" ,
+                 "I can't promote myself! Get an admin to do it for me." : "Ich kann mich nicht selber befördern! Hole einen Admin um es für mich zu tun." ,
+                 "This person CREATED the chat, how would I demote them?" : "Diese Person hat diesen Chat GEMACHT, wie soll ich ihn degradieren?" ,
+                 "Can't demote what wasn't promoted!" : "Kann keinen Benutzer degradieren der nicht befördert wurde!" ,
+                 "I can't demote myself! Get an admin to do it for me." : "Ich kann mich nicht selber degradieren! Hole einen Admin um es für mich zu tun." ,
+                 "Successfully demoted!" : "Erfolgreich degradiert!" ,
+                 "Could not demote.I might not be admin, or the admin status was appointed by another" : "Konnte nicht degradieren. Ich bin vielleicht kein Admin, oder der Admins Status wurde von jemand anderem verteilt" ,
+                 "user, so I can't act upon them!" : "benutzer, so kann ich nicht darauf reagieren!" ,
+                 "I don't have access to the invite link, try changing my permissions!" : "Ich habe keinen Zugriff auf den Einladungs-Link, Versuche meine Rechte zu ändern!" ,
+                 "I can only give you invite links for supergroups and channels, sorry!" : "Ich kann nur Einladungs-Links für Supergruppen geben, tut mir leid!" ,
+                 "Successfully promoted!" : "Erfolgreich gefördert!" }
