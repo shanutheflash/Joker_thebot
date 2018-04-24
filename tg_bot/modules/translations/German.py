@@ -1,4 +1,4 @@
-GermanStrings = {"Switched to {} Successfully!" : "Erfolgreich auf {} geschaltet!" ,
+GermanStrings = {"Switched to {} successfully!" : "Erfolgreich auf {} geschaltet!" ,
                  "You don't seem to be referring to a user." : "Du scheinst dich nicht auf einen Benutzer zu beziehen." ,
                  "I can't seem to find this user" : "Ich kann diesen Benutzer anscheinend nicht finden" ,
                  "I really wish I could ban admins..." : "Ich wünschte wirklich, ich könnte Admins verbannen..." ,

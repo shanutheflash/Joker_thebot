@@ -1,5 +1,5 @@
 DutchStrings = {
-                'Switched to {} Successfully!' : "Succesvol naar {} gewisseld!" ,
+                'Switched to {} successfully!' : "Succesvol naar {} gewisseld!" ,
                 'You don\'t seem to be referring to a user.' : "Het lijkt erop dat je niet naar een gebruiker verwijst." ,
                 "I can't seem to find this user" : "Ik kan deze gebruiker niet vinden" ,
                 "I really wish I could ban admins..." : "Kon ik maar een admin bannen..." ,
