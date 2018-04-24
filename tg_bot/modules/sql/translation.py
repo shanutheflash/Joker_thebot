@@ -25,6 +25,6 @@ def switch_to_locale(chat_id, locale_name):
 
 def prev_locale(chat_id):
     try:
-        return SESSION.query(Locales).get((str(chat_id))).locale_name
+        return SESSION.query(Locales).get((str(chat_id)))
     finally :
         SESSION.close()
