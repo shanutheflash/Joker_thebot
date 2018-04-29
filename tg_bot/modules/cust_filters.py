@@ -198,7 +198,7 @@ def reply_filter(bot: Bot, update: Update):
 
 
 def __stats__():
-    return tld(chat.id, "{} filters, across {} chats.").format(sql.num_filters(), sql.num_chats())
+    return "{} filters, across {} chats.".format(sql.num_filters(), sql.num_chats())
 
 
 def __migrate__(old_chat_id, new_chat_id):
@@ -207,7 +207,7 @@ def __migrate__(old_chat_id, new_chat_id):
 
 def __chat_settings__(chat_id, user_id):
     cust_filters = sql.get_chat_triggers(chat_id)
-    return tld(chat.id, "There are `{}` custom filters here.").format(len(cust_filters))
+    return tld(chat_id, "There are `{}` custom filters here.").format(len(cust_filters))
 
 
 __help__ = """
