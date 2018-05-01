@@ -17,6 +17,9 @@ from FFbot.modules.helper_funcs.extraction import extract_user
 from FFbot.modules.helper_funcs.filters import CustomFilters
 from FFbot.modules.translations.strings import tld
 
+import pyowm
+import urbandictionary as ud
+
 RUN_STRINGS = (
     "Where do you think you're going?",
     "Huh? what? did they get away?",
@@ -357,6 +360,32 @@ def markdown_help(bot: Bot, update: Update):
                                         "[URL](example.com) [button](buttonurl:github.com) "
                                         "[button2](buttonurl://google.com:same)")
 
+@run_async
+def udict(bot:Bot, update:Update, args):
+    entity =  " ".join(args)
+    defs = ud.define(entity)
+    required_definition = defs[0]
+    #definition = required_definition.definition
+    #example = required_definition.example
+    #word = required_definition.word
+    #update.message.reply_text("{} : {} . Example : {}".format(word[0], definition[0], example[0]))
+    update.message.reply_text(required_definition)
+
+@run_async
+def get_weather(bot: Bot, update: Update, args):
+    zone = " ".join(args)
+    owm = pyowm.OWM('5aa1128687accc3b7c3e2d29c2752787')
+    try:
+        weather = owm.weather_at_place(zone)
+    except NotFoundError:
+        update.message.reply_text("Couldn't get weather data. Perhaps this location does not exist.")
+    w = weather.get_weather()
+    weather_c = w.get_temperature('celsius')
+    weather_f = w.get_temperature('fahrenheit')
+    wind_speed = w.get_wind()
+    humidity =  w.get_humidity()
+    status = w.get_detailed_status()
+    update.message.reply_text("It's currently {}°C/{}°F in {}. Feels {}. Humidity Level : {}. Wind Speed : {}".format(weather_c['temp'], weather_f['temp'], zone, status, humidity, wind_speed['speed']))
 
 @run_async
 def stats(bot: Bot, update: Update):
@@ -378,13 +407,13 @@ __mod_name__ = "Misc"
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
 IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID))
-
+UD_HANDLER = DisableAbleCommandHandler("ud", udict, pass_args=True)
 TIME_HANDLER = CommandHandler("time", get_time, pass_args=True)
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
-
+WEATHER_HANDLER = DisableAbleCommandHandler("weather" , get_weather, pass_args=True)
 ECHO_HANDLER = CommandHandler("echo", echo, filters=Filters.user(OWNER_ID))
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
 
@@ -399,3 +428,5 @@ dispatcher.add_handler(INFO_HANDLER)
 dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
+dispatcher.add_handler(WEATHER_HANDLER)
+dispatcher.add_handler(UD_HANDLER)
