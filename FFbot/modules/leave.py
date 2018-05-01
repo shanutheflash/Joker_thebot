@@ -7,7 +7,7 @@ from typing import List
 from FFbot.modules.helper_funcs.filters import CustomFilters
 
 import telegram
-from tg_bot import dispatcher
+from FFbot import dispatcher
 
 @run_async
 def leave(bot: Bot, update: Update, args: List[str]):
