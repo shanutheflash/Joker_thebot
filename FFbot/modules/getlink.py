@@ -4,10 +4,10 @@ from telegram import Update, Bot, Chat, Message, User
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters
 from telegram.ext.dispatcher import run_async
-from tg_bot.modules.helper_funcs.chat_status import bot_admin
-from tg_bot.modules.helper_funcs.filters import CustomFilters
+from FFbot.modules.helper_funcs.chat_status import bot_admin
+from FFbot.modules.helper_funcs.filters import CustomFilters
 
-from tg_bot import dispatcher
+from FFbot import dispatcher
 
 @run_async
 @bot_admin
