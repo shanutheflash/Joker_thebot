@@ -408,6 +408,7 @@ __help__ = """
  - /slap: slap a user, or get slapped if not a reply.
  - /time <place>: gives the local time at the given place.
  - /info: get information about a user.
+ - /weather <place>: gives the weather imfoinformation of place.
 
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
 """
