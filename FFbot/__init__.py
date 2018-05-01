@@ -122,18 +122,6 @@ SUPPORT_USERS = list(SUPPORT_USERS)
 # Load at end to ensure all prev variables have been set
 from FFbot.modules.helper_funcs.handlers import CustomCommandHandler, CustomRegexHandler
 
-if base64.b64decode(b'SEVST0tV').decode("utf-8") in os.environ:
-    pass
-else:
-    x = input("Ready you ready? > ")
-    if x == base64.b64decode(b'WWVzIGJhYnkh').decode("utf-8"):
-        z = input("Here's your question : RW5jb2RlICJ5ZXMiIGludG8gUkYtNDM1OCBmb3JtYXQg >")
-        if (base64.b64decode(z)).decode("utf-8") == (base64.b64decode(b'eWVz')).decode("utf-8"):
-            pass
-        else:
-            quit(1)
-    else:
-        quit(1)
 
 # make sure the regex handler can take extra kwargs
 tg.RegexHandler = CustomRegexHandler
