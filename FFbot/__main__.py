@@ -22,7 +22,7 @@ Hi {}, my name is {}! I'm a group manager bot maintained by [this wonderful pers
 I'm built in python3, using the python-telegram-bot library, and am fully opensource - you can find what makes me tick \
 [here](github.com/PaulSonOfLars/tgbot)!
 
-Feel free to submit pull requests on github, or to contact my support group, @MarieSupport, with any bugs, questions \
+Feel free to submit pull requests on github, or to contact my support group, @jokercommunity, with any bugs, questions \
 or feature requests you might have :)
 I also have a news channel, @MarieNews for announcements on new features, downtime, etc.
 
