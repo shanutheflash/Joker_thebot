@@ -2,6 +2,7 @@ from tg_bot.modules.sql.translation import prev_locale
 from tg_bot.modules.translations.German import GermanStrings
 from tg_bot.modules.translations.Dutch import DutchStrings
 from tg_bot.modules.translations.Indonesian import IndonesianStrings
+from tg_bot.modules.translations.Finnish import FinnishStrings
 
 def tld(chat_id, t, show_none=True):
     LANGUAGE = prev_locale(chat_id)
@@ -13,6 +14,8 @@ def tld(chat_id, t, show_none=True):
            return GermanStrings[t]
         elif LOCALE in ('id') and t in IndonesianStrings:
            return IndonesianStrings[t]
+        elif LOCALE in ('fi') and t in FinnishStrings:
+           return FinnishStrings[t]
         else:
            return t
     elif show_none:
