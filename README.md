@@ -22,14 +22,14 @@ You can find the translateable strings on [crowdin](https://crowdin.com/project/
 ### Credits for translation
 * German - deletescape and P8tgames
 * Dutch - Shabier
-* Bahasa - KrasCGQ and Raphiel Rollerscaperers 
+* Bahasa - KrasCGQ, Raphiel Rollerscaperers and sicrs
 
 
 ## Starting the bot.
 
 Once you've setup your database and your configuration (see below) is complete, simply run:
 
-`python3 -m tg_bot`
+`python3 -m FFbot`
 
 
 ## Setting up the bot (Read this before trying to use!):
@@ -41,7 +41,7 @@ This is because markdown parsing is done by iterating through a dict, which are 
 There are two possible ways of configuring your bot: a config.py file, or ENV variables.
 
 The prefered version is to use a `config.py` file, as it makes it easier to see all your settings grouped together.
-This file should be placed in your `tg_bot` folder, alongside the `__main__.py` file . 
+This file should be placed in your `FFbot` folder, alongside the `__main__.py` file . 
 This is where your bot token will be loaded from, as well as your database URI (if you're using a database), and most of 
 your other settings.
 
@@ -50,7 +50,7 @@ defaults set in the sample_config, hence making it easier to upgrade.
 
 An example `config.py` file could be:
 ```
-from tg_bot.sample_config import Config
+from FFbot.sample_config import Config
 
 
 class Development(Config):
@@ -107,9 +107,9 @@ This will install all necessary python packages.
 ### Developer verification
 
 To run this bot it is required for you to verify that you have some basic python knowledge. To do so copy the `captcha_template.py` file
-to a file named `captcha.py`, this file should be placed in your `tg_bot` folder, alongside the `__main__.py` file.
+to a file named `captcha.py`, this file should be placed in your `FFbot` folder, alongside the `__main__.py` file.
 
-Now follow the instructions in said file and read the output at the beginning of `python3 -m tg_bot` to figure out a solution. Good Luck!
+Now follow the instructions in said file and read the output at the beginning of `python3 -m FFbot` to figure out a solution. Good Luck!
 
 > Keep in mind that we won't help you figure out the solution to the dynamic captcha. If you can't figure it out we're afraid you probably shouldn't be using tgbot
 
@@ -174,7 +174,7 @@ All that is needed is that your .py file be in the modules folder.
 
 To add commands, make sure to import the dispatcher via
 
-`from tg_bot import dispatcher`.
+`from FFbot import dispatcher`.
 
 You can then add commands using the usual
 

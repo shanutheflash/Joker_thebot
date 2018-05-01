@@ -1,1 +1,1 @@
-bot: python3 -m tg_bot
+bot: python3 -m FFbot

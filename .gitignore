@@ -1,4 +1,4 @@
-tg_bot/config.py
-tg_bot/captcha.py
+FFbot/config.py
+FFbot/captcha.py
 *.pyc
 .idea/
